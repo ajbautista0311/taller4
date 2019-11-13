@@ -181,7 +181,7 @@ export class ProyectosController {
     })
     proyectos: Omit<Proyectos, 'id'>,
   ): Promise<Proyectos> {
-    
+
     var existedep, existeres;
     var verificadordep = await this.departamentosRepository.findOne({ where: { id: proyectos.departamentosId }, });
     var verificadorres = await this.responsableRepository.findOne({ where: { id: proyectos.responsableId }, });
@@ -292,6 +292,7 @@ export class ProyectosController {
           schema: getModelSchemaRef(Proyectos, { partial: true }),
         },
       },
+      
     })
     proyectos: Proyectos,
   ): Promise<void> {
