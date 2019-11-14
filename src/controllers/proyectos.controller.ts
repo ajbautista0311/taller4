@@ -86,7 +86,11 @@ export class ProyectosController {
   async find(
     @param.query.object('filter', getFilterSchemaFor(Proyectos)) filter?: Filter<Proyectos>,
   ): Promise<Proyectos[]> {
-    return this.proyectosRepository.find(filter, { strictObjectIDCoercion: true });
+    // var verificadordep = await this.departamentosRepository.findOne({ where: { id: proyectos.departamentosId }, });
+    // var verificadorres = await this.responsableRepository.findOne({ where: { id: proyectos.responsableId }, });
+    var ciclo = this.proyectosRepository.find(filter, { strictObjectIDCoercion: true });
+    //http://localhost:3000/proyectos?filter[include][0][relation]=responsable&filter[include][1][relation]=departamentos
+    return ciclo;
   }
 
   @patch('/proyectos', {
@@ -292,7 +296,7 @@ export class ProyectosController {
           schema: getModelSchemaRef(Proyectos, { partial: true }),
         },
       },
-      
+
     })
     proyectos: Proyectos,
   ): Promise<void> {
